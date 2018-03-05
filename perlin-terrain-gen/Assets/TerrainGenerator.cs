@@ -20,6 +20,8 @@ public class TerrainGenerator : MonoBehaviour {
     {
         Terrain terrain = GetComponent<Terrain>();//reference to terrain component to chang ethe data
         terrain.terrainData = GenerateTerrain(terrain.terrainData);
+
+        offSetX += Time.deltaTime * 5;
     }
 
     TerrainData GenerateTerrain (TerrainData terrainData)
