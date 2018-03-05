@@ -7,7 +7,16 @@ public class TerrainGenerator : MonoBehaviour {
 
     public float scale = 20f;
 
+    public float offSetX = 100f;
+    public float offSetY = 100f;
+
     void Start()
+    {
+        offSetX = Random.Range(0, 9999f);
+        offSetY = Random.Range(0, 9999f);
+    }
+
+    void Update()
     {
         Terrain terrain = GetComponent<Terrain>();//reference to terrain component to chang ethe data
         terrain.terrainData = GenerateTerrain(terrain.terrainData);
@@ -37,8 +46,8 @@ public class TerrainGenerator : MonoBehaviour {
 
     float CalculateHeight (int x, int y) //make sure to calculate the noise coordinate not as whole numbers
     {
-        float xCoord = (float)x / width * scale;
-        float yCoord = (float)y / height * scale;
+        float xCoord = (float)x / width * scale + offSetX;
+        float yCoord = (float)y / height * scale + offSetY;
 
         return Mathf.PerlinNoise(xCoord, yCoord);
     }
